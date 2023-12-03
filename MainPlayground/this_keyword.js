@@ -1,7 +1,28 @@
+// IMPORTANT: Outside a function this keyword refers to the global Window object
+// IMPORTANT: Objects do NOT create a binding with this, Functions DO create a binding with this
+// IMPORTANT: With normal javascript functions, `this` is bound when the function is called. 
+// IMPORTANT: With arrow functions, `this` is bound to the context in which the function is originally created.
+
+// IMPORTANT: Normal (non-arrow) functions have their own execution context
+// Thus what matters is who is calling them, what's to the left of them when they are called
+
+// Example
+const nestedObject = {
+    nestedFunc1: function() {
+        console.log(this, 'nested1') // this will print the nestedObject
+        function nestedFunc2() {
+            console.log(this, 'nested2') 
+        }
+        nestedFunc2() // this will print the window object, because when called there is nothing on the LHS thus Execution context = window object
+    }
+}
+console.log(nestedObject.nestedFunc1())
+
 function talk() {
     return `${this.name} is talking`
 }
-
+// IMPORTANT: const and let variables do not get attached to the window object
+// IMPORTANT: var variables get attached to the window object
 const me = {
     name: "Kush",
     talk
@@ -12,15 +33,19 @@ const you = {
     talk
 }
 
-console.log(me.talk()) // it will print the 'me' object
-console.log(you.talk()) // it will print the 'you' object
-// This keyword refers to the object that is executing the current function (basically who is on the left side of the dot)
+console.log(me.talk(), "Me talk") // it will print the 'me' object
+console.log(you.talk(), "You talk") // it will print the 'you' object
+// This keyword refers to the object that is executing the current function 
+// (basically who is on the left side of the dot)
+
+console.log(talk()) //  it will print the global Window object, thus undefined for window.name
+// When you say talk() you are in a way saying window.talk(), so the left side is the window object
 
 const random = {
     name: "Random",
 }
 const randomTalk = talk.bind(random) // bind overwrites the meaning of 'this' keyword inside the talk function
-console.log(randomTalk())
+console.log(randomTalk(), "bind call")
 
 function talkTwo(lang) {
     if (lang === 'en') {
@@ -34,10 +59,10 @@ const meTwo = {
     name: "Kush",
 }
 
-console.log(talkTwo.call(meTwo, 'en')) // call is the same as bind
+console.log(talkTwo.call(meTwo, 'en'), "'call' call") // call is the same as bind
 // but it executes the function immediately and you can pass a parameter to the function
 
-console.log(talkTwo.apply(meTwo, ['es'])) // apply is the same as call except it takes an array of parameters for the function
+console.log(talkTwo.apply(meTwo, ['es']), "apply call") // apply is the same as call except it takes an array of parameters for the function
 
 function Person(name) {
     this.name = name
@@ -63,3 +88,15 @@ function Person(name) {
 
 const kush = new Person('Kush')
 kush.talk()
+
+
+
+const trialTalk = {
+    name: "Trial",
+    thisAttr: this, // IMPORTANT: OUTSIDE A FUNCTION: this refers to the global Window object
+    talk // IMPORTANT: INSIDE A FUNCTION: this refers to the object that is executing the current function
+}
+
+console.log("this attr")
+console.log(trialTalk.thisAttr) // this will print global Window object
+console.log(trialTalk.talk()) // this will print global Window object's name which is undefined
