@@ -33,3 +33,17 @@ const me = {
 me.inc('final function with argument check')
 
 setTimeout(() => console.log(i), 2000)
+
+// When a JavaScript function is said to be throttled with a wait time of X milliseconds
+// it can only be invoked at most once every X milliseconds
+function throttle(func, wait) {
+  
+    let isExecuted = false
+    return(function(...args) {
+      if(!isExecuted) {
+        func.apply(this, args)
+        isExecuted = true
+      } else return
+      setTimeout(() => isExecuted = false, wait)
+    })
+  }

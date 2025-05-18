@@ -98,5 +98,5 @@ const trialTalk = {
 }
 
 console.log("this attr")
-console.log(trialTalk.thisAttr) // this will print global Window object
-console.log(trialTalk.talk()) // this will print global Window object's name which is undefined
+console.log(trialTalk.thisAttr, "trial straight check") // this will print global Window object
+console.log(trialTalk.talk(), "trial function check") // this will print trialTalk's name, since the function is being called by trailTalk object

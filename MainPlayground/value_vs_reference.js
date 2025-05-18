@@ -59,6 +59,7 @@ console.log(obj2) // {name: 'sina'}, because objects are passed by reference
 // Type Utility Functions for Primitives
 export function isBoolean(value) {
     return value === true || value === false
+    // typeof true or typeof false is boolean
 }
 
 export function isNumber(value) {
@@ -67,6 +68,7 @@ export function isNumber(value) {
 
 export function isNull(value) {
     return value === null
+    // typeof null is object
 }
 
 export function isString(value) {
@@ -79,6 +81,7 @@ export function isSymbol(value) {
 
 export function isUndefined(value) {
     return value === undefined
+    // typeof undefined is undefined
 }
 
 
