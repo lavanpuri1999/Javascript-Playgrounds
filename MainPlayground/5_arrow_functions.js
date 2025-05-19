@@ -1,9 +1,9 @@
-// Anonymous Function: Function without a name which you assiign to a variable
+// 1. Anonymous Function: Function without a name which you assiign to a variable
 const functionName = function() {
     console.log("Hello")
 }
 
-// Callback function: A function that is passed as an argument to another function
+// 2. Callback function: A function that is passed as an argument to another function
 setTimeout(function() {
     return "Hello"
 }) // In this example, the anonymous function is the callback function

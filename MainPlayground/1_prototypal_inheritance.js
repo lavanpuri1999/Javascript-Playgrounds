@@ -1,3 +1,6 @@
+// __proto__ exists on objects instances created by constructor functions or classes
+// prototype exists on classes or constructor functions (does not exist on instances)
+
 class Person {
     talk() {
         console.log('Personn is talking');
@@ -12,7 +15,10 @@ lavan.talk = function() {
     console.log('HAHA I am talking');
 }
 faaez.talk()
-lavan.talk() // HAHA I am talking, because we have overridden the talk() method on the lavan object
+lavan.talk() // HAHA I am talking, because we added a talk property on the lavan object
+
+console.log(lavan); // lavan object now has a talk() property and a talk method in its __proto__
+// so when Javascript starts finding the talk() method, it first looks in the object, if not found, it looks in the __proto__ chain
 
 function AnotherPerson() {
     this.age = 40
@@ -51,3 +57,19 @@ console.log(superman.__proto__); // contains both talk() and fly() methods, howe
 // __proto__ belongs to an instance, prototype belongs to a class/constructor function
 
 // const me = {}  < is the same as > const me = new Object()
+
+
+// Under the hood of the new keyword, the following happens:
+// 1. Creates an empty object, this = {}
+// 2. Assigns all the properties and functions in the function to the 'this'
+// 3. Returhns the 'this'
+
+// Example: under the hood
+// function AnotherPerson {
+//     const this = {}
+//     this.age = 40
+//     this.talk = function() {
+//         console.log('Another Person is talking');
+//     }
+//     return this;
+// }

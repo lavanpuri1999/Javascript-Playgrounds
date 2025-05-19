@@ -22,8 +22,8 @@ function createElement(type, text, color) {
 const h1 = createElement('h1', 'Hello', 'red');
 const p = createElement('p', 'This is a paragraph', 'blue');
 
-// In JavaScript, any function can return a new object.
-// When it’s not a constructor function or class, it’s called a factory function.
+// IMPORTANT: In JavaScript, any function can return a new object.
+// IMPORTANT: When it’s not a constructor function or class, it’s called a factory function.
 
 // Alternative of creating objects using factory functions while setting prototypes
 // Basically alternative of creating an object using the new keyword on a constructor function
@@ -52,3 +52,9 @@ function createPerson(name) {
 const me = createPerson('Lavan');
 console.log(me.talk()); // Hi, my name is Lavan
 console.log(me.name); // undefined , cannot access name property, it is hidden
+
+const anotherPerson = createPerson('Kush');
+console.log(anotherPerson.talk()); // Hi, my name is Kush
+
+createPerson.talk
+

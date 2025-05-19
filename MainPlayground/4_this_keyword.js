@@ -1,6 +1,5 @@
 // IMPORTANT: Outside a function this keyword refers to the global Window object
-// IMPORTANT: Objects do NOT create a binding with this, Functions DO create a binding with this
-// IMPORTANT: With normal javascript functions, `this` is bound when the function is called. 
+// IMPORTANT: With normal javascript functions, `this` is binded when the function is called. 
 // IMPORTANT: With arrow functions, `this` is bound to the context in which the function is originally created.
 
 // IMPORTANT: Normal (non-arrow) functions have their own execution context
@@ -70,6 +69,12 @@ function Person(name) {
         console.log(this) // this will print Person object
     }
 
+    this.anotherArrowTalk = () => {
+        console.log(this); // this will print Person object, because the 'this' if the arrow function was not there
+        // was binded to the Person contructor, if Person was an object and not a contructor function,
+        // you can see an example below.
+    }
+
     // Exceptions
     setTimeout(function() {
         console.log(this) // this will print global Window object  
@@ -88,9 +93,10 @@ function Person(name) {
 
 const kush = new Person('Kush')
 kush.talk()
+kush.anotherArrowTalk();
 
 
-
+// IMPORTANT: Objects do NOT create a binding with this, Functions DO create a binding with this
 const trialTalk = {
     name: "Trial",
     thisAttr: this, // IMPORTANT: OUTSIDE A FUNCTION: this refers to the global Window object

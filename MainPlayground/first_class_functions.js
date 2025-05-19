@@ -1,6 +1,11 @@
 // A programming language is said to have First-class functions
 // when functions in that language are treated like any other variable
 
+// First class function/First class citizens is the ability to be able to treat and 
+// use functions like value.
+// You can pass them as an argument
+// You can return them from a function
+
 a() // a will run because it was hoisted
 b() // this will throw an error because b is not hoisted
 // it's a variable that is undefined until the code execution phase reaches line 11
